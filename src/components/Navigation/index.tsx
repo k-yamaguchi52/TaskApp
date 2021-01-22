@@ -39,7 +39,7 @@ export const Navigation: FC = () => {
       <AppBar position="static">
         <Toolbar>
           <Typography variant="h6" className={classes.title}>
-            {projectList[selectedProjectId].title}
+            {projectList[selectedProjectId] ? projectList[selectedProjectId].title : "TODO 管理"}
           </Typography>
           {/* <Button color="inherit">全て</Button>
           <Button color="inherit">状態ごと</Button>

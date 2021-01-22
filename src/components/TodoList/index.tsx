@@ -11,9 +11,10 @@ import {
   ListItemSecondaryAction,
   IconButton,
   ListItemIcon,
+  Paper,
 } from "@material-ui/core";
 import DeleteIcon from "@material-ui/icons/Delete";
-import { AddCircle, CheckCircle } from "@material-ui/icons";
+import { Add, AddCircle, AddCircleOutline, CheckCircle } from "@material-ui/icons";
 import { useDispatch, useSelector } from "react-redux";
 import { Project, Task, todoSlice, TodoState } from "../../redux/todo";
 import AddTaskDialog from "../AddTaskDialog";
@@ -22,7 +23,8 @@ const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
       width: "100%",
-      maxWidth: 360,
+      // maxWidth: 360,
+      padding: "10px",
     },
   })
 );
@@ -38,9 +40,15 @@ const TodoList: FC = () => {
     setDialogOpen(false);
   };
 
-  const todoList = useSelector<TodoState, { [id: string]: Task}>(state => state.todoList);
-  const selectedProjectId = useSelector<TodoState, string>(state => state.selectedProjectId);
-  const selectedTaskId = useSelector<TodoState, string | undefined>(state => state.selectedTaskId);
+  const todoList = useSelector<TodoState, { [id: string]: Task }>(
+    (state) => state.todoList
+  );
+  const selectedProjectId = useSelector<TodoState, string>(
+    (state) => state.selectedProjectId
+  );
+  const selectedTaskId = useSelector<TodoState, string | undefined>(
+    (state) => state.selectedTaskId
+  );
   const { taskSelected, taskDone } = todoSlice.actions;
   const dispatch = useDispatch();
 
@@ -50,44 +58,46 @@ const TodoList: FC = () => {
 
   const handleClickDoneButton = (taskId: string) => {
     dispatch(taskDone(taskId));
-  }
+  };
 
   return (
-    <>
-    <List className={classes.root}>
-      <ListItem key="addButton" button onClick={handleOpenDialog}>
-      <ListItemIcon>
-            <AddCircle />
+    <Paper className={classes.root}>
+      <List>
+        <ListItem key="addButton" button onClick={handleOpenDialog}>
+          <ListItemIcon>
+            <Add />
           </ListItemIcon>
-          <ListItemText primary="add Task" />
+          <ListItemText primary="タスクを追加" />
         </ListItem>
-      {
-      Object.values(todoList).filter((task => task.projectId === selectedProjectId)).map((task) => (
-        <ListItem key={task.id} button alignItems="flex-start" onClick={e => handleClickTask(task.id)} selected={selectedTaskId === task.id}>
-          <ListItemText
-            primary={task.title}
-            // secondary={
-            //   <React.Fragment>
-            //     <Typography component="span" variant="body2">
-            //       {/* {task.date} */}
-            //     </Typography>
-            //     {" - "}
-            //     <Typography component="span" variant="body2">
-            //       {projectList[selectedProjectId].title}
-            //     </Typography>
-            //   </React.Fragment>
-            // }
-          />
-          <ListItemSecondaryAction>
-            <IconButton onClick={ e => handleClickDoneButton(task.id)}>
-              <CheckCircle />
-            </IconButton>
-          </ListItemSecondaryAction>
-        </ListItem>
-      ))}
-    </List>
-    <AddTaskDialog open={dialogOpen} onClose={handleCloseDialog}></AddTaskDialog>
-    </>
+        <Divider variant="inset" component="li" /> 
+        </List>
+        <List>
+          {/* <Divider></Divider> */}
+        {/* <Divider variant="inset" component="li" /> */}
+        {Object.values(todoList)
+          .filter((task) => task.projectId === selectedProjectId)
+          .map((task) => (
+            <ListItem
+              key={task.id}
+              button
+              alignItems="flex-start"
+              onClick={(e) => handleClickTask(task.id)}
+              selected={selectedTaskId === task.id}
+            >
+              <ListItemText primary={task.title} />
+              <ListItemSecondaryAction>
+                <IconButton onClick={(e) => handleClickDoneButton(task.id)}>
+                  <CheckCircle />
+                </IconButton>
+              </ListItemSecondaryAction>
+            </ListItem>
+          ))}
+      </List>
+      <AddTaskDialog
+        open={dialogOpen}
+        onClose={handleCloseDialog}
+      ></AddTaskDialog>
+    </Paper>
   );
 };
 

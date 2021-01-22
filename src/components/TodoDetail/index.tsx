@@ -1,5 +1,4 @@
 import React, { FC, useState } from "react";
-import { TodoItem } from "../../data/TodoItems";
 
 import {
   createStyles,
@@ -36,8 +35,6 @@ import { Task, todoSlice, TodoState } from "../../redux/todo";
 const spacer = (top: number, bottom: number) => ({
   margin: `${top}px 0 ${bottom}px 0`,
 });
-
-const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {};
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -134,6 +131,7 @@ const TodoDetail: FC = () => {
               disabled={selectedTaskId === undefined}
               value={selectedTaskId ? (todoList[selectedTaskId] ? todoList[selectedTaskId].title : "") : ""}
               onChange={(e) => handleChangeTitle(e.target.value)}
+              placeholder="タイトル"
             />
           </Grid>
         </Grid>

@@ -4,18 +4,9 @@ import {
     Dialog,
     DialogActions,
     DialogContent,
-    DialogContentText,
     DialogTitle,
-    Grid,
-    IconButton,
     TextField,
-    Typography,
   } from "@material-ui/core";
-import { TodoListItem } from "../../redux/TodoList/reducer";
-import { useSelector } from "react-redux";
-import { State } from "../../redux/rootReducer";
-import { getUniqueStr } from "../../service/todo";
-import { title } from "process";
 import { Project } from "../../redux/todo";
 
   type Props = {

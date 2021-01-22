@@ -1,6 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { uuid } from "uuidv4";
-import { Projects } from "../data/TodoItems";
 
 export type Task = {
   id: string;

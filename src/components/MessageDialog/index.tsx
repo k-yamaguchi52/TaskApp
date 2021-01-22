@@ -9,10 +9,7 @@ import {
   IconButton,
   Typography,
 } from "@material-ui/core";
-import { Cancel } from "@material-ui/icons";
 import React, { FC } from "react";
-import { useSelector } from "react-redux";
-import { TodoList } from "../../redux/SelectedTodoList/reducer";
 
 type Props = {
   title: string;
