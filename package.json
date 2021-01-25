@@ -28,7 +28,6 @@
     "uuidv4": "^6.2.6",
     "web-vitals": "^0.2.4"
   },
-  "homepage": "http://heruoji.github.io/todo-app-react",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
