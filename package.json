@@ -28,7 +28,7 @@
     "uuidv4": "^6.2.6",
     "web-vitals": "^0.2.4"
   },
-  "homepage": "http://k-yamaguchi52.github.io/TaskApp",
+  "homepage": "http://k-yamaguchi52.github.io/taskApp",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
